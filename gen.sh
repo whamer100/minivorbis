@@ -1,6 +1,6 @@
 OUTFILE=minivorbis.h
 
-OGGVER=1.3.4
+OGGVER=1.3.5
 OGGDIR=libogg-$OGGVER
 OGGPKG=$OGGDIR.tar.gz
 OGGURL=https://downloads.xiph.org/releases/ogg/$OGGPKG
@@ -29,7 +29,7 @@ cat <<EOF >> $OUTFILE
   minivorbis.h -- libvorbis decoder in a single header
   Project URL: https://github.com/edubart/minivorbis
 
-  This is libogg 1.3.4 + libvorbis 1.3.7 contained in a single header
+  This is libogg 1.3.5 + libvorbis 1.3.7 contained in a single header
   to be bundled in C/C++ applications with ease for decoding OGG sound files.
   Ogg Vorbis is a open general-purpose compressed audio format
   for mid to high quality audio and music at fixed and variable bitrates.

@@ -1,6 +1,6 @@
 # MiniVorbis
 
-This is libogg 1.3.4 + libvorbis 1.3.7 contained in a single header
+This is libogg 1.3.5 + libvorbis 1.3.7 contained in a single header
 to be bundled in C/C++ applications with ease for decoding OGG sound files.
 [Ogg Vorbis](https://en.wikipedia.org/wiki/Vorbis) is a open general-purpose compressed audio format
 for mid to high quality audio and music at fixed and variable bitrates.
@@ -76,7 +76,7 @@ instructions described on it.
 
 ## Updates
 
-- **02-Nov-2020**: Library created, using Ogg 1.3.4 and Vorbis 1.3.7.
+- **05-April-2025**: Library updated, using Ogg 1.3.5 and Vorbis 1.3.7.
 
 ## Notes
 

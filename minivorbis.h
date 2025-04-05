@@ -2,7 +2,7 @@
   minivorbis.h -- libvorbis decoder in a single header
   Project URL: https://github.com/edubart/minivorbis
 
-  This is libogg 1.3.4 + libvorbis 1.3.7 contained in a single header
+  This is libogg 1.3.5 + libvorbis 1.3.7 contained in a single header
   to be bundled in C/C++ applications with ease for decoding OGG sound files.
   Ogg Vorbis is a open general-purpose compressed audio format
   for mid to high quality audio and music at fixed and variable bitrates.
@@ -95,11 +95,11 @@
 
 #  include <sys/types.h>
    typedef int16_t ogg_int16_t;
-   typedef uint16_t ogg_uint16_t;
+   typedef u_int16_t ogg_uint16_t;
    typedef int32_t ogg_int32_t;
-   typedef uint32_t ogg_uint32_t;
+   typedef u_int32_t ogg_uint32_t;
    typedef int64_t ogg_int64_t;
-   typedef uint64_t ogg_uint64_t;
+   typedef u_int64_t ogg_uint64_t;
 
 #elif defined(__HAIKU__)
 
@@ -2810,9 +2810,14 @@ char *ogg_sync_buffer(ogg_sync_state *oy, long size){
 
   if(size>oy->storage-oy->fill){
     /* We need to extend the internal buffer */
-    long newsize=size+oy->fill+4096; /* an extra page to be nice */
+    long newsize;
     void *ret;
 
+    if(size>INT_MAX-4096-oy->fill){
+      ogg_sync_clear(oy);
+      return NULL;
+    }
+    newsize=size+oy->fill+4096; /* an extra page to be nice */
     if(oy->data)
       ret=_ogg_realloc(oy->data,newsize);
     else
@@ -3777,7 +3782,7 @@ void test_pack(const int *pl, const int **headers, int byteskip,
             byteskipcount=byteskip;
           }
 
-          ogg_sync_wrote(&oy,next-buf);
+          ogg_sync_wrote(&oy,(long)(next-buf));
 
           while(1){
             int ret=ogg_sync_pageout(&oy,&og_de);
